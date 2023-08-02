@@ -19,7 +19,7 @@ object Expectations {
   val unfilteredIndicativeEvent = json"""
       {
         "eventName": "link_click",
-        "eventUniqueId": "jon.doe@email.com",
+        "eventUniqueId": "bc2e92ec6c204a14",
         "eventTime": 1532217837886,
         "properties": {
            "page_urlhost" : "www.snowplowanalytics.com",
@@ -113,7 +113,7 @@ object Expectations {
   val indicativeEventWithTrimmedAtomicFields = json"""
       {
         "eventName": "link_click",
-        "eventUniqueId": "jon.doe@email.com",
+        "eventUniqueId": "bc2e92ec6c204a14",
         "eventTime": 1532217837886,
         "properties": {
            "page_urlhost" : "www.snowplowanalytics.com",
@@ -178,7 +178,7 @@ object Expectations {
   val indicativeEventWithTrimmedContextFields = json"""
       {
         "eventName": "link_click",
-        "eventUniqueId": "jon.doe@email.com",
+        "eventUniqueId": "bc2e92ec6c204a14",
         "eventTime": 1532217837886,
         "properties": {
            "page_urlhost" : "www.snowplowanalytics.com",
@@ -313,7 +313,7 @@ object Expectations {
   val indicativeEventUsingStructuredAction = json"""
       {
         "eventName": "struct link click action",
-        "eventUniqueId": "jon.doe@email.com",
+        "eventUniqueId": "bc2e92ec6c204a14",
         "eventTime": 1532217837886,
         "properties": {
            "page_urlhost" : "www.snowplowanalytics.com",
@@ -376,7 +376,7 @@ object Expectations {
   val indicativeEventUsingStructuredCategory = json"""
       {
         "eventName": "struct link click category",
-        "eventUniqueId": "jon.doe@email.com",
+        "eventUniqueId": "bc2e92ec6c204a14",
         "eventTime": 1532217837886,
         "properties": {
            "page_urlhost" : "www.snowplowanalytics.com",

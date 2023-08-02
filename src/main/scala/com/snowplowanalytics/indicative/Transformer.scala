@@ -117,9 +117,9 @@ object Transformer {
     }
 
   def getUserId(flattenedEvent: Map[String, Json]): Option[String] =
-    extractField(flattenedEvent, "user_id")
+    extractField(flattenedEvent, "domain_userid")
       .leftFlatMap(_ => extractField(flattenedEvent, "client_session_userId"))
-      .leftFlatMap(_ => extractField(flattenedEvent, "domain_userid"))
+      .leftFlatMap(_ => extractField(flattenedEvent, "user_id"))
       .toOption
 
   private def constructIndicativeJson(eventName: String,

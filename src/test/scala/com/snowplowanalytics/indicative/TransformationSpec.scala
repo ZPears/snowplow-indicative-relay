@@ -63,22 +63,22 @@ class TransformationSpec extends Specification with ScalaCheck with Matchers {
 
   "getUserId" >> {
 
-    "should return user_id if that is available" >> {
+    "should return domain_userid if that is available" >> {
       val tsvInput = getTsvInput(Instances.Web.input)
       val event =
         (for { parsed <- io.circe.parser.parse(getTransformedSnowplowEvent(tsvInput).toJson(true).noSpaces) } yield
           parsed).right.get
       val inventory      = getTransformedSnowplowEvent(tsvInput).inventory
       val flattenedEvent = FieldsExtraction.flattenJson(event, inventory)
-      val expected       = Option(Expectations.userId)
+      val expected       = Option(Expectations.domainUserid)
 
       getUserId(flattenedEvent) shouldEqual expected
     }
 
-    "should return client_session_userId if that is available and there is no user_id" >> {
+    "should return client_session_userId if that is available and there is no domain_userid" >> {
       val input = Instances.Mobile.input.map {
-        case (key, _) if key == "user_id" => (key, "")
-        case (key, value)                 => (key, value)
+        case (key, _) if key == "domain_userid" => (key, "")
+        case (key, value)                       => (key, value)
       }
       val tsvInput = getTsvInput(input)
       val event =
@@ -90,10 +90,10 @@ class TransformationSpec extends Specification with ScalaCheck with Matchers {
 
       getUserId(flattenedEvent) shouldEqual expected
     }
-    "should return domain_userid if that is available and there is no user_id or client_session_userId" >> {
+    "should return user_id if that is available and there is no domain_userid or client_session_userId" >> {
       val input = Instances.Web.input.map {
-        case (key, _) if key == "user_id" => (key, "")
-        case (key, value)                 => (key, value)
+        case (key, _) if key == "domain_userid" => (key, "")
+        case (key, value)                       => (key, value)
       }
       val tsvInput = getTsvInput(input)
       val event =
@@ -101,7 +101,7 @@ class TransformationSpec extends Specification with ScalaCheck with Matchers {
           parsed).right.get
       val inventory      = getTransformedSnowplowEvent(tsvInput).inventory
       val flattenedEvent = FieldsExtraction.flattenJson(event, inventory)
-      val expected       = Option(Expectations.domainUserid)
+      val expected       = Option(Expectations.userId)
 
       getUserId(flattenedEvent) shouldEqual expected
     }
